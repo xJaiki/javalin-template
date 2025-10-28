@@ -159,7 +159,10 @@ public final class ProductController {
     }
 
     private ErrorResponse toErrorResponse(Exception exception) {
-        return new ErrorResponse(exception.getMessage(), stackTrace(exception));
+        if (it.jaiki.config.AppConfig.shouldExposeErrorDetails()) {
+            return new ErrorResponse(exception.getMessage(), stackTrace(exception));
+        }
+        return new ErrorResponse(exception.getMessage());
     }
 
     private String stackTrace(Throwable throwable) {

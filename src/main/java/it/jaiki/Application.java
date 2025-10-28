@@ -19,6 +19,7 @@ import io.javalin.config.JavalinConfig;
 import io.javalin.json.JavalinJackson;
 import io.javalin.http.ForbiddenResponse;
 import io.javalin.http.UnauthorizedResponse;
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,6 +34,9 @@ public final class Application {
     }
 
     public static void main(String[] args) {
+        // Load local .env (if present) and app config early
+        it.jaiki.config.AppConfig.load();
+
         HikariDataSource dataSource = DatabaseConfig.createDataSource();
         DatabaseConfig.runMigrations(dataSource);
 
@@ -49,6 +53,16 @@ public final class Application {
         registerSecurity(app);
         authController.registerRoutes(app);
         productController.registerRoutes(app);
+
+        // Health and readiness endpoints
+        app.get("/health", ctx -> ctx.json(Map.of("status", "UP")));
+        app.get("/ready", ctx -> {
+            try (var conn = dataSource.getConnection()) {
+                ctx.json(Map.of("status", "READY"));
+            } catch (Exception e) {
+                ctx.status(503).json(Map.of("status", "NOT_READY", "error", e.getMessage()));
+            }
+        });
 
         int port = resolvePort();
         LOGGER.info("Starting server on port {}", port);

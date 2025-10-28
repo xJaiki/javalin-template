@@ -4,6 +4,7 @@
 /Users/jaiki/Dev/Personale/javalin-test/src/main/java/it/jaiki/model/request/UserLoginRequest.java
 /Users/jaiki/Dev/Personale/javalin-test/src/main/java/it/jaiki/Application.java
 /Users/jaiki/Dev/Personale/javalin-test/src/main/java/it/jaiki/controller/ProductController.java
+/Users/jaiki/Dev/Personale/javalin-test/src/main/java/it/jaiki/config/AppConfig.java
 /Users/jaiki/Dev/Personale/javalin-test/src/main/java/it/jaiki/security/Role.java
 /Users/jaiki/Dev/Personale/javalin-test/src/main/java/it/jaiki/controller/ErrorResponse.java
 /Users/jaiki/Dev/Personale/javalin-test/src/main/java/it/jaiki/config/DatabaseConfig.java
