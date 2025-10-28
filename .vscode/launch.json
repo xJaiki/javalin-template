@@ -1,0 +1,19 @@
+{
+  "version": "0.1.0-SNAPSHOT",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch Application (run in VS Code)",
+      "request": "launch",
+      "mainClass": "it.jaiki.Application",
+      "projectName": "javalin-test"
+    },
+    {
+      "type": "java",
+      "name": "Attach to JVM (5005)",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 5005
+    }
+  ]
+}

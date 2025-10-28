@@ -18,7 +18,6 @@ buildNumber.properties
 *.iws
 
 # VS Code
-.vscode/
 *.code-workspace
 
 # Eclipse
